@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Jogador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .panel {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .control {
+            margin-bottom: 20px;
+        }
+
+        .control label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .control input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .control button {
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .image-button {
+            width: 30%;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+        }
+
+        .image-button img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>Painel do Jogador</h1>
+
+        <div class="image-container">
+            <img id="playerImage" src="normal.jpg" alt="Imagem do Jogador">
+        </div>
+
+        <div class="control">
+            <label for="health">Vida:</label>
+            <input type="number" id="health" value="100" min="0" max="100" onchange="updateStats()">
+        </div>
+
+        <div class="control">
+            <label for="sanity">Sanidade:</label>
+            <input type="number" id="sanity" value="100" min="0" max="100" onchange="updateStats()">
+        </div>
+
+        <div class="control">
+            <button onclick="submitStats()">Salvar Alterações</button>
+        </div>
+
+        <h3>Escolha a Imagem</h3>
+        <div class="image-button" onclick="changeImage('normal')">
+            <img src="normal.jpg" alt="Normal">
+        </div>
+        <div class="image-button" onclick="changeImage('fear')">
+            <img src="fear.jpg" alt="Com Medo">
+        </div>
+        <div class="image-button" onclick="changeImage('dying')">
+            <img src="dying.jpg" alt="Morrendo">
+        </div>
+    </div>
+
+    <script>
+        // Função para atualizar os valores de vida e sanidade
+        function updateStats() {
+            var health = document.getElementById('health').value;
+            var sanity = document.getElementById('sanity').value;
+            console.log(`Vida: ${health}, Sanidade: ${sanity}`);
+        }
+
+        // Função para mudar a imagem do jogador
+        function changeImage(state) {
+            var image = document.getElementById('playerImage');
+            if (state === 'normal') {
+                image.src = 'normal.jpg';
+            } else if (state === 'fear') {
+                image.src = 'fear.jpg';
+            } else if (state === 'dying') {
+                image.src = 'dying.jpg';
+            }
+        }
+
+        // Função para salvar os dados
+        function submitStats() {
+            var health = document.getElementById('health').value;
+            var sanity = document.getElementById('sanity').value;
+            console.log(`Stats salvos: Vida = ${health}, Sanidade = ${sanity}`);
+            // Aqui você pode implementar a lógica para salvar no servidor ou em um banco de dados
+        }
+    </script>
+</body>
+</html>
